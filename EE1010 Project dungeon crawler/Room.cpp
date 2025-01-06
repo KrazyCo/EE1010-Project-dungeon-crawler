@@ -1,7 +1,16 @@
 #include "Room.h"
+#include <string>
 
-Room::Room()
+Room::Room(std::string name, std::string description, std::string hint)
 {
+	this->name = name;
+	this->description = description;
+	this->hint = hint;
+	visited = false;
+	northRoom = nullptr;
+	southRoom = nullptr;
+	eastRoom = nullptr;
+	westRoom = nullptr;
 }
 
 void Room::setNorthRoom(Room* room)

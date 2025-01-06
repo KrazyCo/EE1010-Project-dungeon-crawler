@@ -1,14 +1,20 @@
 #pragma once
 
+#include <string>
+
 class Room {
 private:
 	Room* northRoom;
 	Room* southRoom;
 	Room* eastRoom;
 	Room* westRoom;
+	std::string name;
+	std::string description;
+	std::string hint;
+	bool visited;
 
 public:
-	Room();
+	Room(std::string name, std::string description, std::string hint);
 
 	void setNorthRoom(Room* room);
 	void setSouthRoom(Room* room);
