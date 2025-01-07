@@ -1,5 +1,6 @@
 #include "Room.h"
 #include <string>
+#include <iostream>
 
 Room::Room(std::string name, std::string description, std::string hint)
 {
@@ -51,4 +52,31 @@ Room* Room::getEastRoom()
 Room* Room::getWestRoom()
 {
 	return westRoom;
+}
+
+std::string Room::getName()
+{
+	return name;
+}
+
+std::string Room::getDescription()
+{
+	return description;
+}
+
+std::string Room::getHint()
+{
+	return hint;
+}
+
+bool Room::getVisited()
+{
+	return visited;
+}
+
+void Room::printRoom()
+{
+	std::cout << "You are in the " << name << ".\n";
+	std::cout << description << "\n";
+	std::cout << hint << "\n";
 }

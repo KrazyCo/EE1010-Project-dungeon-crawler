@@ -25,4 +25,11 @@ public:
 	Room* getEastRoom();
 	Room* getWestRoom();
 
+	std::string getName();
+	std::string getDescription();
+	std::string getHint();
+	bool getVisited();
+	
+	void printRoom();
+
 };
