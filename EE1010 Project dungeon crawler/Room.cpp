@@ -256,7 +256,7 @@ void Room::printRoom()
 			std::cout << "                                                  ";
 		}
 
-		std::cout << "           ";
+		std::cout << "          ";
 
 		if (eastRoom)
 		{
