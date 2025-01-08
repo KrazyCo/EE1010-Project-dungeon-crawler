@@ -1,7 +1,7 @@
 ﻿#include "Room.h"
-#include <string>
-#include <iostream>
 #include <algorithm>
+#include <iostream>
+#include <string>
 
 Room::Room(std::string name, std::string centerText, std::string description, std::string hint)
 {
@@ -38,22 +38,50 @@ void Room::setWestRoom(Room* room)
 
 Room* Room::getNorthRoom()
 {
-	return northRoom;
+	if (northRoom)
+	{
+		return northRoom;
+	}
+	else
+	{
+		return nullptr;
+	}
 }
 
 Room* Room::getSouthRoom()
 {
-	return southRoom;
+	if (southRoom)
+	{
+		return southRoom;
+	}
+	else
+	{
+		return nullptr;
+	}
 }
 
 Room* Room::getEastRoom()
 {
-	return eastRoom;
+	if (eastRoom)
+	{
+		return eastRoom;
+	}
+	else
+	{
+		return nullptr;
+	}
 }
 
 Room* Room::getWestRoom()
 {
-	return westRoom;
+	if (westRoom)
+	{
+		return westRoom;
+	}
+	else
+	{
+		return nullptr;
+	}
 }
 
 std::string Room::getName()
@@ -98,16 +126,16 @@ void Room::printRoom()
 				northHintPadding = 0;
 				if (northHintLineLength == 23)
 				{
-					northHintLineLength = northRoom->getHint().find_last_of(" ", northHintStart + northHintLineLength) - northHintStart;
+					northHintLineLength = static_cast<int>(northRoom->getHint().find_last_of(" ", northHintStart + northHintLineLength)) - northHintStart; // static_cast to get rid of compiler warning
 				}
 				else
 				{
 					endOfNorthHint = true;
 				}
 				northHintPadding = 23 - northHintLineLength;
-				std::cout << "#############################################   " 
-					<< northRoom->getHint().substr(northHintStart, northHintLineLength) 
-					<< std::string(northHintPadding, ' ') 
+				std::cout << "#############################################   "
+					<< northRoom->getHint().substr(northHintStart, northHintLineLength)
+					<< std::string(northHintPadding, ' ')
 					<< "   #############################################\n";
 				spaceAtStartOfNorthHint = 1;
 			}
@@ -117,6 +145,216 @@ void Room::printRoom()
 			}
 		}
 	}
+	else
+	{
+		for (int i = 0; i < 3; i++)
+		{
+			std::cout << "#######################################################################################################################\n";
+		}
+	}
+	for (int i = 0; i < 7; i++)
+	{
+		std::cout << "###                                                                                                                 ###\n";
+	}
+
 	// west room hint, center text and east room hint
-	
+	if (westRoom)
+	{
+		std::cout << "   ";
+	}
+	else
+	{
+		std::cout << "###";
+	}
+
+	std::cout << "                                                                                                                 ";
+
+	if (eastRoom)
+	{
+		std::cout << "   \n";
+	}
+	else
+	{
+		std::cout << "###\n";
+	}
+
+	bool endOfWestHint{ false };
+	int spaceAtStartOfWestHint{ 0 };
+	int westHintStart{ 0 };
+	int westHintLineLength{ 0 };
+	int westHintPadding{ 0 };
+
+	bool endOfCenterText{ false };
+	int spaceAtStartOfCenterText{ 0 };
+	int centerTextStart{ 0 };
+	int centerTextLineLength{ 0 };
+	int centerTextPadding{ 0 };
+
+	bool endOfEastHint{ false };
+	int spaceAtStartOfEastHint{ 0 };
+	int eastHintStart{ 0 };
+	int eastHintLineLength{ 0 };
+	int eastHintPadding{ 0 };
+
+	for (int i = 0; i < 3; i++)
+	{
+		if (westRoom)
+		{
+
+			if (!endOfWestHint)
+			{
+				westHintStart += westHintLineLength + spaceAtStartOfWestHint;
+				westHintLineLength = std::min(23, static_cast<int>(westRoom->getHint().length() - westHintStart));
+				westHintPadding = 0;
+				if (westHintLineLength == 23)
+				{
+					westHintLineLength = static_cast<int>(westRoom->getHint().find_last_of(" ", westHintStart + westHintLineLength)) - westHintStart; // static_cast to get rid of compiler warning
+				}
+				else
+				{
+					endOfWestHint = true;
+				}
+				westHintPadding = 23 - westHintLineLength;
+				std::cout << westRoom->getHint().substr(westHintStart, westHintLineLength)
+					<< std::string(westHintPadding, ' ');
+				spaceAtStartOfWestHint = 1;
+			}
+			else
+			{
+				std::cout << "                       ";
+			}
+		}
+		else
+		{
+			std::cout << "###                    ";
+		}
+
+
+
+		std::cout << "             ";
+
+		if (!endOfCenterText)
+		{
+			centerTextStart += centerTextLineLength + spaceAtStartOfCenterText;
+			centerTextLineLength = std::min(50, static_cast<int>(centerText.length() - centerTextStart));
+			centerTextPadding = 0;
+			if (centerTextLineLength == 50)
+			{
+				centerTextLineLength = static_cast<int>(centerText.find_last_of(" ", centerTextStart + centerTextLineLength)) - centerTextStart; // static_cast to get rid of compiler warning
+			}
+			else
+			{
+				endOfCenterText = true;
+			}
+			centerTextPadding = 50 - centerTextLineLength;
+			std::cout << centerText.substr(centerTextStart, centerTextLineLength)
+				<< std::string(centerTextPadding, ' ');
+			spaceAtStartOfCenterText = 1;
+		}
+		else
+		{
+			std::cout << "                                                  ";
+		}
+
+		std::cout << "           ";
+
+		if (eastRoom)
+		{
+			if (!endOfEastHint)
+			{
+				eastHintStart += eastHintLineLength + spaceAtStartOfEastHint;
+				eastHintLineLength = std::min(23, static_cast<int>(eastRoom->getHint().length() - eastHintStart));
+				eastHintPadding = 0;
+				if (eastHintLineLength == 23)
+				{
+					eastHintLineLength = static_cast<int>(eastRoom->getHint().find_last_of(" ", eastHintStart + eastHintLineLength)) - eastHintStart; // static_cast to get rid of compiler warning
+				}
+				else
+				{
+					endOfEastHint = true;
+				}
+				eastHintPadding = 23 - eastHintLineLength;
+				std::cout << eastRoom->getHint().substr(eastHintStart, eastHintLineLength)
+					<< std::string(eastHintPadding, ' ') << '\n';
+				spaceAtStartOfEastHint = 1;
+			}
+			else
+			{
+				std::cout << "                       \n";
+			}
+		}
+		else
+		{
+			std::cout << "                    ###\n";
+		}
+	}
+
+	if (westRoom)
+	{
+		std::cout << "   ";
+	}
+	else
+	{
+		std::cout << "###";
+	}
+
+	std::cout << "                                                                                                                 ";
+
+	if (eastRoom)
+	{
+		std::cout << "   \n";
+	}
+	else
+	{
+		std::cout << "###\n";
+	}
+
+	for (int i = 0; i < 7; i++)
+	{
+		std::cout << "###                                                                                                                 ###\n";
+	}
+
+	// south room hint
+	if (southRoom)
+	{
+		bool endOfSouthHint{ false };
+		int spaceAtStartOfSouthHint{ 0 };
+		int southHintStart{ 0 };
+		int southHintLineLength{ 0 };
+		int southHintPadding{ 0 };
+		for (int i = 0; i < 3; i++)
+		{
+			if (!endOfSouthHint)
+			{
+				southHintStart += southHintLineLength + spaceAtStartOfSouthHint;
+				southHintLineLength = std::min(23, static_cast<int>(southRoom->getHint().length() - southHintStart));
+				southHintPadding = 0;
+				if (southHintLineLength == 23)
+				{
+					southHintLineLength = static_cast<int>(southRoom->getHint().find_last_of(" ", southHintStart + southHintLineLength)) - southHintStart; // static_cast to get rid of compiler warning
+				}
+				else
+				{
+					endOfSouthHint = true;
+				}
+				southHintPadding = 23 - southHintLineLength;
+				std::cout << "#############################################   "
+					<< southRoom->getHint().substr(southHintStart, southHintLineLength)
+					<< std::string(southHintPadding, ' ')
+					<< "   #############################################\n";
+				spaceAtStartOfSouthHint = 1;
+			}
+			else
+			{
+				std::cout << "#############################################                             #############################################\n";
+			}
+		}
+	}
+	else
+	{
+		for (int i = 0; i < 3; i++)
+		{
+			std::cout << "#######################################################################################################################\n";
+		}
+	}
 }
