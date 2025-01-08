@@ -9,12 +9,13 @@ private:
 	Room* eastRoom;
 	Room* westRoom;
 	std::string name;
+	std::string centerText;
 	std::string description;
 	std::string hint;
 	bool visited;
 
 public:
-	Room(std::string name, std::string description, std::string hint);
+	Room(std::string name, std::string centerText, std::string description, std::string hint);
 
 	void setNorthRoom(Room* room);
 	void setSouthRoom(Room* room);
@@ -31,5 +32,4 @@ public:
 	bool getVisited();
 	
 	void printRoom();
-
 };
