@@ -344,11 +344,11 @@ void Room::printRoom()
 	}
 }
 
-bool Room::moveNorth(Room* outRoom)
+bool Room::moveNorth(Room** outRoom)
 {
 	if (northRoom)
 	{
-		outRoom = northRoom;
+		*outRoom = northRoom;
 		return true;
 	}
 	else
@@ -357,11 +357,11 @@ bool Room::moveNorth(Room* outRoom)
 	}
 }
 
-bool Room::moveSouth(Room* outRoom)
+bool Room::moveSouth(Room** outRoom)
 {
 	if (southRoom)
 	{
-		outRoom = southRoom;
+		*outRoom = southRoom;
 		return true;
 	}
 	else
@@ -370,11 +370,11 @@ bool Room::moveSouth(Room* outRoom)
 	}
 }
 
-bool Room::moveEast(Room* outRoom)
+bool Room::moveEast(Room** outRoom)
 {
 	if (eastRoom)
 	{
-		outRoom = eastRoom;
+		*outRoom = eastRoom;
 		return true;
 	}
 	else
@@ -383,11 +383,11 @@ bool Room::moveEast(Room* outRoom)
 	}
 }
 
-bool Room::moveWest(Room* outRoom)
+bool Room::moveWest(Room** outRoom)
 {
 	if (westRoom)
 	{
-		outRoom = westRoom;
+		*outRoom = westRoom;
 		return true;
 	}
 	else

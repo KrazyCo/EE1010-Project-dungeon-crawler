@@ -38,10 +38,10 @@ public:
 	void setHint(std::string hint) { this->hint = hint; }
 	void setVisited(bool visited) { this->visited = visited; }
 
-	bool moveNorth(Room* outRoom);
-	bool moveSouth(Room* outRoom);
-	bool moveEast(Room* outRoom);
-	bool moveWest(Room* outRoom);
+	bool moveNorth(Room** outRoom);
+	bool moveSouth(Room** outRoom);
+	bool moveEast(Room** outRoom);
+	bool moveWest(Room** outRoom);
 	
 	void printRoom();
 };
