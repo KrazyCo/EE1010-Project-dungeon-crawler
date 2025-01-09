@@ -3,6 +3,32 @@
 #include <iostream>
 #include <string>
 
+Room::Room()
+{
+	name = "";
+	centerText = "";
+	description = "";
+	hint = "";
+	visited = false;
+	northRoom = nullptr;
+	southRoom = nullptr;
+	eastRoom = nullptr;
+	westRoom = nullptr;
+}
+
+Room::Room(std::string name, std::string centerText, std::string description)
+{
+	this->name = name;
+	this->centerText = centerText;
+	this->description = description;
+	hint = "";
+	visited = false;
+	northRoom = nullptr;
+	southRoom = nullptr;
+	eastRoom = nullptr;
+	westRoom = nullptr;
+}
+
 Room::Room(std::string name, std::string centerText, std::string description, std::string hint)
 {
 	this->name = name;
@@ -14,26 +40,6 @@ Room::Room(std::string name, std::string centerText, std::string description, st
 	southRoom = nullptr;
 	eastRoom = nullptr;
 	westRoom = nullptr;
-}
-
-void Room::setNorthRoom(Room* room)
-{
-	northRoom = room;
-}
-
-void Room::setSouthRoom(Room* room)
-{
-	southRoom = room;
-}
-
-void Room::setEastRoom(Room* room)
-{
-	eastRoom = room;
-}
-
-void Room::setWestRoom(Room* room)
-{
-	westRoom = room;
 }
 
 Room* Room::getNorthRoom()
@@ -83,27 +89,6 @@ Room* Room::getWestRoom()
 		return nullptr;
 	}
 }
-
-std::string Room::getName()
-{
-	return name;
-}
-
-std::string Room::getDescription()
-{
-	return description;
-}
-
-std::string Room::getHint()
-{
-	return hint;
-}
-
-bool Room::getVisited()
-{
-	return visited;
-}
-
 
 void Room::printRoom()
 {
@@ -356,5 +341,57 @@ void Room::printRoom()
 		{
 			std::cout << "#######################################################################################################################\n";
 		}
+	}
+}
+
+bool Room::moveNorth(Room* outRoom)
+{
+	if (northRoom)
+	{
+		outRoom = northRoom;
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
+bool Room::moveSouth(Room* outRoom)
+{
+	if (southRoom)
+	{
+		outRoom = southRoom;
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
+bool Room::moveEast(Room* outRoom)
+{
+	if (eastRoom)
+	{
+		outRoom = eastRoom;
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
+bool Room::moveWest(Room* outRoom)
+{
+	if (westRoom)
+	{
+		outRoom = westRoom;
+		return true;
+	}
+	else
+	{
+		return false;
 	}
 }
