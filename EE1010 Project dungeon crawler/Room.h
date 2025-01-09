@@ -45,4 +45,3 @@ public:
 	
 	void printRoom();
 };
-
