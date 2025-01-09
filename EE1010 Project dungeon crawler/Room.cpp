@@ -395,3 +395,4 @@ bool Room::moveWest(Room* outRoom)
 		return false;
 	}
 }
+

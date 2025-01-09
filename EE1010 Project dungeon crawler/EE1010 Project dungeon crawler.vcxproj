@@ -132,6 +132,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Room.h" />
+    <ClInclude Include="Setup.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
