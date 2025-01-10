@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Room.h"
+#include "Items.h"
 
 // if time allows make this random generation instead of hard coded
 // as its a template it needs to be in the header file
@@ -8,6 +9,7 @@
 template <int t_rows, int t_columns> // function template to allow any size arrays to be passed
 void setup2DArray(int rows, int columns, Room(&outArray)[t_rows][t_columns], Room** currentRoom)
 {
+	// setup rooms
 	outArray[0][0] = Room("keyRoom", "A key sits in the middle of the room", "You see a key that you can pickup in the middle of the room");
 	outArray[0][1] = Room("monsterRoom", "A monster sits in the middle of the room", "You see a monster that you can fight in the middle of the room");
 	outArray[0][3] = Room("monsterRoom", "A monster sits in the middle of the room", "You see a monster that you can fight in the middle of the room");
@@ -42,6 +44,37 @@ void setup2DArray(int rows, int columns, Room(&outArray)[t_rows][t_columns], Roo
 	outArray[6][3] = Room("startRoom", "You wake up in a what seems to be a maze, with cold stone walls all around apart from a single open door", "You see an open door that you can travel through", "It feels like you came from here");
 	outArray[6][5] = Room("swordRoom", "A sword sits in the middle of the room", "You see a sword in the room, shining in the light, that you can pickup");
 	outArray[6][6] = Room("monsterRoom", "A monster sits in the middle of the room", "You see a monster that you can fight in the middle of the room");
+
+	// setup items
+	Item key{};
+	key.type = ItemType::KEY;
+	key.name = "Key";
+	key.keyType = KeyType::END_GATE;
+	outArray[0][0].setItem(key);
+
+	Item sword{};
+	sword.type = ItemType::SWORD;
+	sword.name = "Sword";
+	sword.attack = 5;
+	outArray[6][5].setItem(sword);
+
+	Item shield{};
+	shield.type = ItemType::SHIELD;
+	shield.name = "Shield";
+	shield.defense = 5;
+	outArray[5][1].setItem(shield);
+
+	Item betterShield{};
+	betterShield.type = ItemType::SHIELD;
+	betterShield.name = "Stronger Shield";
+	betterShield.defense = 10;
+	outArray[0][4].setItem(betterShield);
+
+	Item betterSword{};
+	betterSword.type = ItemType::SWORD;
+	betterSword.name = "Bigger Sword";
+	betterSword.attack = 10;
+	outArray[1][2].setItem(betterSword);
 
 	// setup room connections
 	outArray[0][0].setEastRoom(&outArray[0][1]);

@@ -1,4 +1,5 @@
 ﻿#include "Room.h"
+
 #include <algorithm>
 #include <iostream>
 #include <string>
@@ -14,6 +15,7 @@ Room::Room()
 	southRoom = nullptr;
 	eastRoom = nullptr;
 	westRoom = nullptr;
+	monster = nullptr;
 }
 
 Room::Room(std::string name, std::string centerText, std::string description)
@@ -27,6 +29,7 @@ Room::Room(std::string name, std::string centerText, std::string description)
 	southRoom = nullptr;
 	eastRoom = nullptr;
 	westRoom = nullptr;
+	monster = nullptr;
 }
 
 Room::Room(std::string name, std::string centerText, std::string description, std::string hint)
@@ -40,6 +43,7 @@ Room::Room(std::string name, std::string centerText, std::string description, st
 	southRoom = nullptr;
 	eastRoom = nullptr;
 	westRoom = nullptr;
+	monster = nullptr;
 }
 
 Room* Room::getNorthRoom()
@@ -344,7 +348,7 @@ void Room::printRoom()
 	}
 }
 
-bool Room::moveNorth(Room** outRoom)
+bool Room::moveUp(Room** outRoom)
 {
 	if (northRoom)
 	{
@@ -357,7 +361,7 @@ bool Room::moveNorth(Room** outRoom)
 	}
 }
 
-bool Room::moveSouth(Room** outRoom)
+bool Room::moveDown(Room** outRoom)
 {
 	if (southRoom)
 	{
@@ -370,7 +374,7 @@ bool Room::moveSouth(Room** outRoom)
 	}
 }
 
-bool Room::moveEast(Room** outRoom)
+bool Room::moveRight(Room** outRoom)
 {
 	if (eastRoom)
 	{
@@ -383,7 +387,7 @@ bool Room::moveEast(Room** outRoom)
 	}
 }
 
-bool Room::moveWest(Room** outRoom)
+bool Room::moveLeft(Room** outRoom)
 {
 	if (westRoom)
 	{
@@ -396,3 +400,59 @@ bool Room::moveWest(Room** outRoom)
 	}
 }
 
+void Room::pickupItem(float& playerAttack, float& playerDefence, bool& hasEndKey)
+{
+	bool itemPickedUp{ false };
+
+	switch (this->item.type)
+	{
+	case ItemType::NONE:
+		std::cout << "There is nothing to pick up here.\n";
+		return;
+		break;
+	case ItemType::KEY:
+		std::cout << "You picked up a " << item.name << ".\n";
+		if (item.keyType == KeyType::END_GATE)
+		{
+			hasEndKey = true;
+		}
+		itemPickedUp = true;
+		break;
+	case ItemType::SWORD:
+		if (item.attack > playerAttack)
+		{
+			playerAttack = item.attack;
+			std::cout << "You picked up a " << item.name << ".\n";
+			itemPickedUp = true;
+		}
+		else
+		{
+			std::cout << "As you inspect the sword, you realise you already have a better one, so you do not pick it up.\n";
+		} 
+		break;
+	case ItemType::SHIELD:
+		if (item.defense > playerDefence)
+		{
+			playerDefence = item.defense;
+			std::cout << "You picked up a " << item.name << ".\n";
+			itemPickedUp = true;
+		}
+		else
+		{
+			std::cout << "As you inspect the shield, you realise you already have a better one, so you do not pick it up.\n";
+		}
+		break;
+	}
+
+	if (itemPickedUp)
+	{
+		// as the item has now been picked up remove it from the room
+		this->centerText = "";
+		this->description = "An empty room you can pass freely through";
+		this->item.type = ItemType::NONE;
+		this->item.attack = 0;
+		this->item.defense = 0;
+		this->item.name = "";
+		this->item.keyType = KeyType::NONE;
+	}
+}

@@ -129,10 +129,15 @@
   <ItemGroup>
     <ClCompile Include="EE1010 Project dungeon crawler.cpp" />
     <ClCompile Include="Input.cpp" />
+    <ClCompile Include="Monster.cpp" />
+    <ClCompile Include="Random.cpp" />
     <ClCompile Include="Room.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Input.h" />
+    <ClInclude Include="Items.h" />
+    <ClInclude Include="Monster.h" />
+    <ClInclude Include="Random.h" />
     <ClInclude Include="Room.h" />
     <ClInclude Include="Setup.h" />
     <ClInclude Include="StringFunctions.h" />

@@ -3,7 +3,7 @@
 #include <limits> // for std::numeric_limits
 #include <string>
 
-void ignoreLine()
+static void ignoreLine()
 {
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 }

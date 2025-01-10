@@ -24,6 +24,12 @@
     <ClCompile Include="Input.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Monster.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Random.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Room.h">
@@ -36,6 +42,15 @@
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="StringFunctions.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Items.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Monster.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Random.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
