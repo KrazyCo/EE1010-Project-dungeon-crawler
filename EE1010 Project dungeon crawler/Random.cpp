@@ -10,6 +10,7 @@ void setupRandomSeed()
 // generate random number between startNum and endNum
 int generateRandomNumber(int startNum, int endNum) {
     int range{ endNum - startNum };
+    //if (range == 0) return 0;
     int randomNumber{ (rand() % range) + startNum }; // get random number inside the range passed to function
 
     return randomNumber;

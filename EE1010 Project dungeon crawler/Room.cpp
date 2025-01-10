@@ -1,4 +1,5 @@
 ﻿#include "Room.h"
+#include "Monster.h"
 
 #include <algorithm>
 #include <iostream>
@@ -15,7 +16,8 @@ Room::Room()
 	southRoom = nullptr;
 	eastRoom = nullptr;
 	westRoom = nullptr;
-	monster = nullptr;
+	monster = Monster();
+	monsterInRoom = false;
 }
 
 Room::Room(std::string name, std::string centerText, std::string description)
@@ -29,7 +31,8 @@ Room::Room(std::string name, std::string centerText, std::string description)
 	southRoom = nullptr;
 	eastRoom = nullptr;
 	westRoom = nullptr;
-	monster = nullptr;
+	monster = Monster();
+	monsterInRoom = false;
 }
 
 Room::Room(std::string name, std::string centerText, std::string description, std::string hint)
@@ -43,7 +46,8 @@ Room::Room(std::string name, std::string centerText, std::string description, st
 	southRoom = nullptr;
 	eastRoom = nullptr;
 	westRoom = nullptr;
-	monster = nullptr;
+	monster = Monster();
+	monsterInRoom = false;
 }
 
 Room* Room::getNorthRoom()
@@ -346,6 +350,12 @@ void Room::printRoom()
 			std::cout << "#######################################################################################################################\n";
 		}
 	}
+}
+
+void Room::setMonster(Monster monster)
+{
+	this->monster = monster;
+	monsterInRoom = true;
 }
 
 bool Room::moveUp(Room** outRoom)

@@ -14,9 +14,11 @@ int main()
 	bool gameRunning = true;
 	bool movedRooms = true;
 
-	float playerAttack{ 0 };
-	float playerDefense{ 0 };
+	float playerAttack{ 15 };
+	float playerDefense{ 2 };
+	float playerDodgeChance{ 10 };
 	bool hasEndKey{ false };
+	int health{ 100 };
 
 	const int rows = 7;
 	const int columns = 7;
@@ -35,7 +37,8 @@ int main()
 			movedRooms = false;
 		}
 
-		std::cout << "\nYou can move (up), (down), (left), or (right).\n";
+		std::cout << "You can move (up), (down), (left), or (right).\n";
+		std::cout << "If you encounter a monster, you can (attack) them to try defeat it.\n";
 		std::cout << "You can also (pickup) items.\n\n";
 
 		std::string userInput = getUserString("Enter your move: ");
@@ -95,9 +98,30 @@ int main()
 		{
 			currentRoom->pickupItem(playerAttack, playerDefense, hasEndKey);
 		}
+		else if (userInput == "attack")
+		{
+			if (currentRoom->isMonsterInRoom())
+			{
+				currentRoom->getMonster().attackMonster(health, playerAttack, playerDefense, 0);
+			}
+			else
+			{
+				std::cout << "There is no monster in this room.\n";
+			}
+			std::cout << "You have " << health << " health left.\n\n";
+			if (health <= 0)
+			{
+				std::cout << "You have died.\n";
+				gameRunning = false;
+			}
+		}
+		else if (userInput == "exit")
+		{
+			gameRunning = false;
+		}
 		else
 		{
-			std::cout << "Invalid selection.\n";
+			std::cout << "Invalid selection.\n\n";
 		}
 	}
 
