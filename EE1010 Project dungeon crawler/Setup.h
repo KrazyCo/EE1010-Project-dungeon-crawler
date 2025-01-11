@@ -77,7 +77,8 @@ void setup2DArray(int rows, int columns, Room(&outArray)[t_rows][t_columns], Roo
 	outArray[1][2].setItem(betterSword);
 
 	// setup monsters
-	outArray[5][2].setMonster(Monster(25, 10, 5, 10, 15, &outArray[5][2]));
+	static Monster monster1 = Monster(25, 10, 5, 10, 15, &outArray[5][2]);
+	outArray[5][2].setMonster(&monster1);
 
 	// setup room connections
 	outArray[0][0].setEastRoom(&outArray[0][1]);

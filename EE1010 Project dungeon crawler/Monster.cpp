@@ -40,6 +40,10 @@ void Monster::attackMonster(int& playerHealth, float playerAttack, float playerD
 			if (damage < 0)	damage = 0;
 			this->health -= damage;
 			std::cout << "You dealt " << damage << " damage to the monster.\n";
+			if (health >= 0)
+			{
+				std::cout << "The monster has " << health << " health left.\n";
+			}
 		}
 		if (health <= 0)
 		{
@@ -50,7 +54,6 @@ void Monster::attackMonster(int& playerHealth, float playerAttack, float playerD
 		}
 		else
 		{
-			std::cout << "The monster has " << health << " health left.\n";
 			if (generateRandomNumber(0, 100) < playerDodgeChance)
 			{
 				std::cout << "As the monster tries to strike back, you manage to dodge its attack";

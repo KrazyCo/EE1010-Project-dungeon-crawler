@@ -16,7 +16,7 @@ Room::Room()
 	southRoom = nullptr;
 	eastRoom = nullptr;
 	westRoom = nullptr;
-	monster = Monster();
+	monster = nullptr;
 	monsterInRoom = false;
 }
 
@@ -31,7 +31,7 @@ Room::Room(std::string name, std::string centerText, std::string description)
 	southRoom = nullptr;
 	eastRoom = nullptr;
 	westRoom = nullptr;
-	monster = Monster();
+	monster = nullptr;
 	monsterInRoom = false;
 }
 
@@ -46,7 +46,7 @@ Room::Room(std::string name, std::string centerText, std::string description, st
 	southRoom = nullptr;
 	eastRoom = nullptr;
 	westRoom = nullptr;
-	monster = Monster();
+	monster = nullptr;
 	monsterInRoom = false;
 }
 
@@ -352,7 +352,7 @@ void Room::printRoom()
 	}
 }
 
-void Room::setMonster(Monster monster)
+void Room::setMonster(Monster* monster)
 {
 	this->monster = monster;
 	monsterInRoom = true;

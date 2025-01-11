@@ -19,7 +19,7 @@ private:
 	std::string hint;
 	bool visited;
 	Item item;
-	Monster monster;
+	Monster* monster;
 	bool monsterInRoom;
 
 public:
@@ -41,8 +41,7 @@ public:
 	std::string getHint() { return hint; }
 	bool getVisited() { return visited; }
 	Item getItem() { return item; }
-	Monster getMonster() { return monster; }
-	bool isMonsterInRoom() { return monsterInRoom; }
+	Monster* getMonster() { return monster; }
 
 	void setName(const std::string& name) { this->name = name; }
 	void setDescription(const std::string& description) { this->description = description; }
@@ -50,7 +49,7 @@ public:
 	void setHint(const std::string& hint) { this->hint = hint; }
 	void setVisited(bool visited) { this->visited = visited; }
 	void setItem(Item& item) { this->item = std::move(item); }
-	void setMonster(Monster monster);
+	void setMonster(Monster* monster);
 
 	bool moveUp(Room** outRoom);
 	bool moveDown(Room** outRoom);

@@ -100,15 +100,15 @@ int main()
 		}
 		else if (userInput == "attack")
 		{
-			if (currentRoom->isMonsterInRoom())
+			if (currentRoom->getMonster())
 			{
-				currentRoom->getMonster().attackMonster(health, playerAttack, playerDefense, 0);
+				currentRoom->getMonster()->attackMonster(health, playerAttack, playerDefense, 0);
 			}
 			else
 			{
 				std::cout << "There is no monster in this room.\n";
 			}
-			std::cout << "You have " << health << " health left.\n\n";
+			std::cout << "\nYou have " << health << " health left.\n\n";
 			if (health <= 0)
 			{
 				std::cout << "You have died.\n";
