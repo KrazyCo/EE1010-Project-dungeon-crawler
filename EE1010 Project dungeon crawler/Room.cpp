@@ -299,6 +299,8 @@ void Room::printRoom()
 		std::cout << '[' << std::string(static_cast<int>(monsterAlivenessAmount), '#') << std::string(damageChars - static_cast<int>(monsterAlivenessAmount), ' ') << ']';
 		std::cout << ' ' << monster->getHealth() << "hp / " << monster->getMaxHealth() << "hp";
 
+		if (monster->getHealth() < 10) { std::cout << ' '; } // add padding if the health is 1 digit
+
 		std::cout << "                           ";
 	}
 	else

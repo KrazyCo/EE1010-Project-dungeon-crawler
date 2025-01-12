@@ -55,7 +55,7 @@ void setup2DArray(int rows, int columns, Room(&outArray)[t_rows][t_columns], Roo
 	Item sword{};
 	sword.type = ItemType::SWORD;
 	sword.name = "Sword";
-	sword.attack = 15;
+	sword.attack = 25;
 	outArray[6][5].setItem(sword);
 
 	Item shield{};
@@ -67,13 +67,13 @@ void setup2DArray(int rows, int columns, Room(&outArray)[t_rows][t_columns], Roo
 	Item betterShield{};
 	betterShield.type = ItemType::SHIELD;
 	betterShield.name = "Stronger Shield";
-	betterShield.defense = 25;
+	betterShield.defense = 15;
 	outArray[0][4].setItem(betterShield);
 
 	Item betterSword{};
 	betterSword.type = ItemType::SWORD;
 	betterSword.name = "Bigger Sword";
-	betterSword.attack = 45;
+	betterSword.attack = 60;
 	outArray[1][2].setItem(betterSword);
 
 	// setup monsters
@@ -128,7 +128,7 @@ void setup2DArray(int rows, int columns, Room(&outArray)[t_rows][t_columns], Roo
 	static Monster monster16 = Monster(70, 20, 15, 15, &outArray[1][6]);
 	outArray[1][6].setMonster(&monster16);
 
-	static Monster monster05 = Monster(100, 25, 25, 20, &outArray[0][5]);
+	static Monster monster05 = Monster(99, 25, 25, 20, &outArray[0][5]);
 	outArray[0][5].setMonster(&monster05);
 
 	// setup room connections

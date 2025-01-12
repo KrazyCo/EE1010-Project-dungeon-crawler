@@ -30,6 +30,7 @@ void Monster::attackMonster(int& playerHealth, float playerAttack, float playerD
 {
 	if (isAlive)
 	{
+		int playerHealthToHeal = maxHealth * 0.1;
 		if (generateRandomNumber(0, 100) < dodgeChance)
 		{
 			room->printRoom();
@@ -44,8 +45,18 @@ void Monster::attackMonster(int& playerHealth, float playerAttack, float playerD
 			{ 
 				isAlive = false;
 				health = 0;
-				room->setCenterText("A defeated monster lies in the middle of the room");
-				room->setDescription("A faint smell of monster lingers in the air");
+				if (room->getItem().type == ItemType::NONE)
+				{
+					room->setCenterText("A defeated monster lies in the middle of the room");
+					room->setDescription("A faint smell of monster lingers in the air");
+				}
+				else
+				{
+					room->setCenterText("A " + room->getItem().name + " sits in the middle of the room");
+					room->setDescription("A faint smell of monster lingers in the air");
+				}
+				playerHealth += playerHealthToHeal;
+				if (playerHealth > 100) { playerHealth = 100; }
 			}
 
 			room->printRoom();
@@ -60,6 +71,11 @@ void Monster::attackMonster(int& playerHealth, float playerAttack, float playerD
 		{
 			// todo: check if there is an item in the room
 			std::cout << "The monster has been defeated.\n";
+			std::cout << "You use the remains of the monster to create a potion, healing you " << playerHealthToHeal << " health\n";
+			if (room->getItem().type != ItemType::NONE)
+			{
+				std::cout << "As the dust settles, you see a " << room->getItem().name << " sitting in the room\n";
+			}
 		}
 		else
 		{

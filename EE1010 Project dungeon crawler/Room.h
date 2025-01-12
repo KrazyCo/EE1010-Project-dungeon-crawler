@@ -6,6 +6,14 @@
 #include "Items.h"
 #include "Monster.h"
 
+enum class RoomDirection
+{
+	NORTH,
+	SOUTH,
+	EAST,
+	WEST
+};
+
 class Room {
 private:
 	Room* northRoom;
@@ -18,6 +26,7 @@ private:
 	std::string description;
 	std::string hint;
 	bool visited;
+	RoomDirection roomCameFrom;
 	Item item;
 	Monster* monster;
 
@@ -35,10 +44,18 @@ public:
 	Room* getEastRoom();
 	Room* getWestRoom();
 
+	bool isRoomNorth() { return northRoom; }
+	bool isRoomSouth() { return southRoom; }
+	bool isRoomEast() { return eastRoom; }
+	bool isRoomWest() { return westRoom; }
+
+	bool isNorthRoomEndRoom() { return (northRoom->getName() == "endMonsterRoom"); }
+
 	std::string getName() { return name; }
 	std::string getDescription() { return description; }
 	std::string getHint() { return hint; }
 	bool getVisited() { return visited; }
+	RoomDirection getRoomCameFrom() { return roomCameFrom; }
 	Item getItem() { return item; }
 	Monster* getMonster() { return monster; }
 
@@ -49,6 +66,7 @@ public:
 	void setVisited(bool visited) { this->visited = visited; }
 	void setItem(Item& item) { this->item = std::move(item); }
 	void setMonster(Monster* monster);
+	void setRoomCameFrom(RoomDirection roomDirection) { roomCameFrom = roomDirection; }
 
 	bool moveUp(Room** outRoom);
 	bool moveDown(Room** outRoom);

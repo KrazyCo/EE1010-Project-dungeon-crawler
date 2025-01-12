@@ -14,8 +14,8 @@ int main()
 	bool gameRunning = true;
 	bool movedRooms = true;
 
-	float playerAttack{ 15 };
-	float playerDefense{ 2 };
+	float playerAttack{ 5 }; // starting stats
+	float playerDefense{ 5 };
 	float playerDodgeChance{ 10 };
 	bool hasEndKey{ false };
 	int health{ 100 };
@@ -48,10 +48,56 @@ int main()
 
 		if (userInput == "up")
 		{
-			if (currentRoom->moveUp(&currentRoom))
+			if (currentRoom->isRoomNorth())
 			{
-				std::cout << "\n\n\n\n\n\nYou move up.\n\n\n";
-				movedRooms = true;
+				if (currentRoom->isNorthRoomEndRoom()) // only the north direction can have an end room
+				{
+					if (hasEndKey)
+					{
+						currentRoom->moveUp(&currentRoom);
+						currentRoom->setRoomCameFrom(RoomDirection::SOUTH);
+						std::cout << "\n\n\n\n\n\nYou pass through the unlocked gate.\n\n\n";
+						movedRooms = true;
+					}
+					else
+					{
+						std::cout << "A locked gate blocks your path\n\n";
+					}
+				}
+				else
+				{
+					if (currentRoom->getMonster())// check to make sure that we dont nullptr the if statement below
+					{
+						if (currentRoom->getMonster()->getIsAlive())
+						{
+							if (currentRoom->getRoomCameFrom() == RoomDirection::NORTH)
+							{
+								currentRoom->moveUp(&currentRoom);
+								currentRoom->setRoomCameFrom(RoomDirection::SOUTH);
+								std::cout << "\n\n\n\n\n\nYou move back up.\n\n\n";
+								movedRooms = true;
+							}
+							else
+							{
+								std::cout << "The monster blocks you from moving that way, only allowing you to retreat\n\n";
+							}
+						}
+						else
+						{
+							currentRoom->moveUp(&currentRoom);
+							currentRoom->setRoomCameFrom(RoomDirection::SOUTH);
+							std::cout << "\n\n\n\n\n\nYou move up.\n\n\n";
+							movedRooms = true;
+						}
+					}
+					else
+					{
+						currentRoom->moveUp(&currentRoom);
+						currentRoom->setRoomCameFrom(RoomDirection::SOUTH);
+						std::cout << "\n\n\n\n\n\nYou move up.\n\n\n";
+						movedRooms = true;
+					}
+				}
 			}
 			else
 			{
@@ -60,10 +106,39 @@ int main()
 		}
 		else if (userInput == "down")
 		{
-			if (currentRoom->moveDown(&currentRoom))
+			if (currentRoom->isRoomSouth())
 			{
-				std::cout << "\n\n\n\n\n\nYou move down.\n\n\n";
-				movedRooms = true;
+				if (currentRoom->getMonster()) // check to make sure that we dont nullptr the if statement below
+				{
+					if (currentRoom->getMonster()->getIsAlive())
+					{
+						if (currentRoom->getRoomCameFrom() == RoomDirection::SOUTH)
+						{
+							currentRoom->moveDown(&currentRoom);
+							currentRoom->setRoomCameFrom(RoomDirection::NORTH);
+							std::cout << "\n\n\n\n\n\nYou move back down.\n\n\n";
+							movedRooms = true;
+						}
+						else
+						{
+							std::cout << "The monster blocks you from moving that way, only allowing you to retreat\n\n";
+						}
+					}
+					else
+					{
+						currentRoom->moveDown(&currentRoom);
+						currentRoom->setRoomCameFrom(RoomDirection::NORTH);
+						std::cout << "\n\n\n\n\n\nYou move down.\n\n\n";
+						movedRooms = true;
+					}
+				}
+				else
+				{
+					currentRoom->moveDown(&currentRoom);
+					currentRoom->setRoomCameFrom(RoomDirection::NORTH);
+					std::cout << "\n\n\n\n\n\nYou move down.\n\n\n";
+					movedRooms = true;
+				}
 			}
 			else
 			{
@@ -72,10 +147,39 @@ int main()
 		}
 		else if (userInput == "right")
 		{
-			if (currentRoom->moveRight(&currentRoom))
+			if (currentRoom->isRoomEast())
 			{
-				std::cout << "\n\n\n\n\n\nYou move right.\n\n\n";
-				movedRooms = true;
+				if (currentRoom->getMonster()) // check to make sure that we dont nullptr the if statement below
+				{
+					if (currentRoom->getMonster()->getIsAlive())
+					{
+						if (currentRoom->getRoomCameFrom() == RoomDirection::EAST)
+						{
+							currentRoom->moveRight(&currentRoom);
+							currentRoom->setRoomCameFrom(RoomDirection::WEST);
+							std::cout << "\n\n\n\n\n\nYou move back right.\n\n\n";
+							movedRooms = true;
+						}
+						else
+						{
+							std::cout << "The monster blocks you from moving that way, only allowing you to retreat\n\n";
+						}
+					}
+					else
+					{
+						currentRoom->moveRight(&currentRoom);
+						currentRoom->setRoomCameFrom(RoomDirection::WEST);
+						std::cout << "\n\n\n\n\n\nYou move right.\n\n\n";
+						movedRooms = true;
+					}
+				}
+				else
+				{
+					currentRoom->moveRight(&currentRoom);
+					currentRoom->setRoomCameFrom(RoomDirection::WEST);
+					std::cout << "\n\n\n\n\n\nYou move right.\n\n\n";
+					movedRooms = true;
+				}
 			}
 			else
 			{
@@ -84,10 +188,39 @@ int main()
 		}
 		else if (userInput == "left")
 		{
-			if (currentRoom->moveLeft(&currentRoom))
+			if (currentRoom->isRoomWest())
 			{
-				std::cout << "\n\n\n\n\n\nYou move left.\n\n\n";
-				movedRooms = true;
+				if (currentRoom->getMonster())// check to make sure that we dont nullptr the if statement below
+				{
+					if (currentRoom->getMonster()->getIsAlive())
+					{
+						if (currentRoom->getRoomCameFrom() == RoomDirection::WEST)
+						{
+							currentRoom->moveLeft(&currentRoom);
+							currentRoom->setRoomCameFrom(RoomDirection::EAST);
+							std::cout << "\n\n\n\n\n\nYou move back left.\n\n\n";
+							movedRooms = true;
+						}
+						else
+						{
+							std::cout << "The monster blocks you from moving that way, only allowing you to retreat\n\n";
+						}
+					}
+					else
+					{
+						currentRoom->moveLeft(&currentRoom);
+						currentRoom->setRoomCameFrom(RoomDirection::EAST);
+						std::cout << "\n\n\n\n\n\nYou move left.\n\n\n";
+						movedRooms = true;
+					}
+				}
+				else
+				{
+					currentRoom->moveLeft(&currentRoom);
+					currentRoom->setRoomCameFrom(RoomDirection::EAST);
+					std::cout << "\n\n\n\n\n\nYou move left.\n\n\n";
+					movedRooms = true;
+				}
 			}
 			else
 			{
