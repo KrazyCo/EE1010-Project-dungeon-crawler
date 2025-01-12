@@ -30,7 +30,7 @@ void Monster::attackMonster(int& playerHealth, float playerAttack, float playerD
 {
 	if (isAlive)
 	{
-		int playerHealthToHeal = maxHealth * 0.1;
+		int playerHealthToHeal = static_cast<int>(maxHealth * 0.1);
 		if (generateRandomNumber(0, 100) < dodgeChance)
 		{
 			room->printRoom();
