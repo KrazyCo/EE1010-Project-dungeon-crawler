@@ -49,11 +49,13 @@ void Monster::attackMonster(int& playerHealth, float playerAttack, float playerD
 				{
 					room->setCenterText("A defeated monster lies in the middle of the room");
 					room->setDescription("A faint smell of monster lingers in the air");
+					room->setHint("");
 				}
 				else
 				{
 					room->setCenterText("A " + room->getItem().name + " sits in the middle of the room");
 					room->setDescription("A faint smell of monster lingers in the air");
+					room->setHint("");
 				}
 				playerHealth += playerHealthToHeal;
 				if (playerHealth > 100) { playerHealth = 100; }
@@ -69,7 +71,6 @@ void Monster::attackMonster(int& playerHealth, float playerAttack, float playerD
 		}
 		if (health <= 0)
 		{
-			// todo: check if there is an item in the room
 			std::cout << "The monster has been defeated.\n";
 			std::cout << "You use the remains of the monster to create a potion, healing you " << playerHealthToHeal << " health\n";
 			if (room->getItem().type != ItemType::NONE)

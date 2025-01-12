@@ -14,7 +14,7 @@ void setup2DArray(int rows, int columns, Room(&outArray)[t_rows][t_columns], Roo
 	outArray[0][1] = Room("monsterRoom", "A monster sits in the middle of the room", "You see a monster that you can fight in the middle of the room");
 	outArray[0][3] = Room("monsterRoom", "A monster sits in the middle of the room", "You see a monster that you can fight in the middle of the room");
 	outArray[0][4] = Room("monsterBetterShieldRoom", "A monster sits in the middle of the room", "You see a monster that you can fight in the middle of the room");
-	outArray[0][5] = Room("endMonsterRoom", "A huge monster sits in the middle of the room", "You see a huge monster that you can fight in the middle of the room, guarding the exit to the maze", "You hear a growing coming from this room, but the gate is locked");
+	outArray[0][5] = Room("endMonsterRoom", "A huge monster sits in the middle of the room", "You see a huge monster that you can fight in the middle of the room, guarding the exit to the maze", "You hear a growling coming from this room, but the gate is locked");
 	outArray[1][0] = Room("monsterRoom", "A monster sits in the middle of the room", "You see a monster that you can fight in the middle of the room");
 	outArray[1][1] = Room("emptyRoom", "", "An empty room that you can pass freely through");
 	outArray[1][2] = Room("monsterBetterSwordRoom", "A monster sits in the middle of the room", "You see a monster that you can fight in the middle of the room");
@@ -79,74 +79,92 @@ void setup2DArray(int rows, int columns, Room(&outArray)[t_rows][t_columns], Roo
 	// setup monsters
 	static Monster monster52 = Monster(25, 10, 5, 10, &outArray[5][2]);
 	monster52.setHealth(25);
+	monster52.setAlive(true);
 	outArray[5][2].setMonster(&monster52);
 
 	static Monster monster66 = Monster(25, 10, 5, 10, &outArray[6][6]);
 	monster66.setHealth(25);
+	monster66.setAlive(true);
 	outArray[6][6].setMonster(&monster66);
 
 	static Monster monster50 = Monster(40, 15, 10, 10, &outArray[5][0]);
 	monster50.setHealth(40);
+	monster50.setAlive(true);
 	outArray[5][0].setMonster(&monster50);
 
 	static Monster monster40 = Monster(40, 15, 10, 10, &outArray[4][0]);
 	monster40.setHealth(40);
+	monster40.setAlive(true);
 	outArray[4][0].setMonster(&monster40);
 
 	static Monster monster33 = Monster(40, 15, 10, 10, &outArray[3][3]);
 	monster33.setHealth(40);
+	monster33.setAlive(true);
 	outArray[3][3].setMonster(&monster33);
 
 	static Monster monster24 = Monster(40, 15, 10, 10, &outArray[2][4]);
 	monster24.setHealth(40);
+	monster24.setAlive(true);
 	outArray[2][4].setMonster(&monster24);
 
 	static Monster monster44 = Monster(50, 15, 15, 15, &outArray[4][4]);
 	monster44.setHealth(50);
+	monster44.setAlive(true);
 	outArray[4][4].setMonster(&monster44);
 
 	static Monster monster20 = Monster(50, 15, 15, 15, &outArray[2][0]);
 	monster20.setHealth(50);
+	monster20.setAlive(true);
 	outArray[2][0].setMonster(&monster20);
 
 	static Monster monster10 = Monster(50, 15, 15, 15, &outArray[1][0]);
 	monster10.setHealth(50);
+	monster10.setAlive(true);
 	outArray[1][0].setMonster(&monster10);
 
 	static Monster monster12 = Monster(50, 15, 15, 15, &outArray[1][2]);
 	monster12.setHealth(50);
+	monster12.setAlive(true);
 	outArray[1][2].setMonster(&monster12);
 
 	static Monster monster03 = Monster(50, 15, 15, 15, &outArray[0][3]);
 	monster03.setHealth(50);
+	monster03.setAlive(true);
 	outArray[0][3].setMonster(&monster03);
 
 	static Monster monster04 = Monster(50, 15, 15, 15, &outArray[0][4]);
 	monster04.setHealth(50);
+	monster04.setAlive(true);
 	outArray[0][4].setMonster(&monster04);
 
 	static Monster monster01 = Monster(70, 20, 15, 15, &outArray[0][1]);
 	monster01.setHealth(70);
+	monster01.setAlive(true);
 	outArray[0][1].setMonster(&monster01);
 
 	static Monster monster45 = Monster(70, 20, 15, 15, &outArray[4][5]);
 	monster45.setHealth(70);
+	monster45.setAlive(true);
 	outArray[4][5].setMonster(&monster45);
 
 	static Monster monster36 = Monster(70, 20, 15, 15, &outArray[3][6]);
 	monster36.setHealth(70);
+	monster36.setAlive(true);
 	outArray[3][6].setMonster(&monster36);
 
 	static Monster monster25 = Monster(70, 20, 15, 15, &outArray[2][5]);
 	monster25.setHealth(70);
+	monster25.setAlive(true);
 	outArray[2][5].setMonster(&monster25);
 
 	static Monster monster16 = Monster(70, 20, 15, 15, &outArray[1][6]);
 	monster16.setHealth(70);
+	monster16.setAlive(true);
 	outArray[1][6].setMonster(&monster16);
 
 	static Monster monster05 = Monster(99, 25, 25, 20, &outArray[0][5]);
 	monster05.setHealth(99);
+	monster05.setAlive(true);
 	outArray[0][5].setMonster(&monster05);
 
 	// setup room connections
