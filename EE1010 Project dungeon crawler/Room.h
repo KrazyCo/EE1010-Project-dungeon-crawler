@@ -20,7 +20,6 @@ private:
 	bool visited;
 	Item item;
 	Monster* monster;
-	bool monsterInRoom;
 
 public:
 	Room();

@@ -77,8 +77,59 @@ void setup2DArray(int rows, int columns, Room(&outArray)[t_rows][t_columns], Roo
 	outArray[1][2].setItem(betterSword);
 
 	// setup monsters
-	static Monster monster1 = Monster(25, 10, 5, 10, 15, &outArray[5][2]);
-	outArray[5][2].setMonster(&monster1);
+	static Monster monster52 = Monster(25, 10, 5, 10, &outArray[5][2]);
+	outArray[5][2].setMonster(&monster52);
+
+	static Monster monster66 = Monster(25, 10, 5, 10, &outArray[6][6]);
+	outArray[6][6].setMonster(&monster66);
+
+	static Monster monster50 = Monster(40, 15, 10, 10, &outArray[5][0]);
+	outArray[5][0].setMonster(&monster50);
+
+	static Monster monster40 = Monster(40, 15, 10, 10, &outArray[4][0]);
+	outArray[4][0].setMonster(&monster40);
+
+	static Monster monster33 = Monster(40, 15, 10, 10, &outArray[3][3]);
+	outArray[3][3].setMonster(&monster33);
+
+	static Monster monster24 = Monster(40, 15, 10, 10, &outArray[2][4]);
+	outArray[2][4].setMonster(&monster24);
+
+	static Monster monster44 = Monster(50, 15, 15, 15, &outArray[4][4]);
+	outArray[4][4].setMonster(&monster44);
+
+	static Monster monster20 = Monster(50, 15, 15, 15, &outArray[2][0]);
+	outArray[2][0].setMonster(&monster20);
+
+	static Monster monster10 = Monster(50, 15, 15, 15, &outArray[1][0]);
+	outArray[1][0].setMonster(&monster10);
+
+	static Monster monster12 = Monster(50, 15, 15, 15, &outArray[1][2]);
+	outArray[1][2].setMonster(&monster12);
+
+	static Monster monster03 = Monster(50, 15, 15, 15, &outArray[0][3]);
+	outArray[0][3].setMonster(&monster03);
+
+	static Monster monster04 = Monster(50, 15, 15, 15, &outArray[0][4]);
+	outArray[0][4].setMonster(&monster04);
+
+	static Monster monster01 = Monster(70, 20, 15, 15, &outArray[0][1]);
+	outArray[0][1].setMonster(&monster01);
+
+	static Monster monster45 = Monster(70, 20, 15, 15, &outArray[4][5]);
+	outArray[4][5].setMonster(&monster45);
+
+	static Monster monster36 = Monster(70, 20, 15, 15, &outArray[3][6]);
+	outArray[3][6].setMonster(&monster36);
+
+	static Monster monster25 = Monster(70, 20, 15, 15, &outArray[2][5]);
+	outArray[2][5].setMonster(&monster25);
+
+	static Monster monster16 = Monster(70, 20, 15, 15, &outArray[1][6]);
+	outArray[1][6].setMonster(&monster16);
+
+	static Monster monster05 = Monster(100, 25, 25, 20, &outArray[0][5]);
+	outArray[0][5].setMonster(&monster05);
 
 	// setup room connections
 	outArray[0][0].setEastRoom(&outArray[0][1]);

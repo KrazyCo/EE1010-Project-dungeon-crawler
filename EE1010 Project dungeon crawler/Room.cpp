@@ -17,7 +17,6 @@ Room::Room()
 	eastRoom = nullptr;
 	westRoom = nullptr;
 	monster = nullptr;
-	monsterInRoom = false;
 }
 
 Room::Room(std::string name, std::string centerText, std::string description)
@@ -32,7 +31,6 @@ Room::Room(std::string name, std::string centerText, std::string description)
 	eastRoom = nullptr;
 	westRoom = nullptr;
 	monster = nullptr;
-	monsterInRoom = false;
 }
 
 Room::Room(std::string name, std::string centerText, std::string description, std::string hint)
@@ -47,7 +45,6 @@ Room::Room(std::string name, std::string centerText, std::string description, st
 	eastRoom = nullptr;
 	westRoom = nullptr;
 	monster = nullptr;
-	monsterInRoom = false;
 }
 
 Room* Room::getNorthRoom()
@@ -291,7 +288,23 @@ void Room::printRoom()
 		std::cout << "###";
 	}
 
-	std::cout << "                                                                                                                 ";
+	if (monster)
+	{
+		std::cout << "                                ";
+		constexpr int damageChars{ 40 };
+		// static_cast hell is to stop compiler warnings but still use floating division
+		int monsterAlivenessAmount = static_cast<int>((static_cast<float>(monster->getHealth())) / static_cast<float>(monster->getMaxHealth()) * static_cast<float>(damageChars));
+		monsterAlivenessAmount = std::max(monsterAlivenessAmount, 0);
+
+		std::cout << '[' << std::string(static_cast<int>(monsterAlivenessAmount), '#') << std::string(damageChars - static_cast<int>(monsterAlivenessAmount), ' ') << ']';
+		std::cout << ' ' << monster->getHealth() << "hp / " << monster->getMaxHealth() << "hp";
+
+		std::cout << "                           ";
+	}
+	else
+	{
+		std::cout << "                                                                                                                 ";
+	}
 
 	if (eastRoom)
 	{
@@ -355,7 +368,6 @@ void Room::printRoom()
 void Room::setMonster(Monster* monster)
 {
 	this->monster = monster;
-	monsterInRoom = true;
 }
 
 bool Room::moveUp(Room** outRoom)
