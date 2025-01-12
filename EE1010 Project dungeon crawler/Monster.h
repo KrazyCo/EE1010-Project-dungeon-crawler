@@ -22,6 +22,8 @@ public:
 
 	bool getIsAlive() const { return isAlive; }
 
+	void setHealth(int health) { this->health = health; }
+
 	int getHealth() { return health; }
 	int getMaxHealth() { return maxHealth; }
 };
