@@ -92,7 +92,22 @@ int main()
 				else if (userInput == "help")
 				{
 					// explain game to user
-					std::cout << "blah blah\n";
+					std::cout << "\n"
+						"                        Welcome to Dungeons, where you have to defeat the final monster to win!\n"
+						"                        While playing the game, you have a few options of choices you can make,\n"
+						"                        these are shown in brackets().\n\n"
+						"                        You can find items (swords and shields) around the dungeon to help you\n"
+						"                        fight monsters, they will be required for some of them!\n"
+						"                        Stronger items are protected by monsters, and will only be shown after\n"
+						"                        they are defeated!\n\n"
+						"                        When you defeat a monster, you will make a health potion and heal up\n"
+						"                        slightly depending on how strong the monster was, \n"
+						"                        so if you are low health you can go kill monsters to heal up enough.\n\n"
+						"                        The room to the final monster is locked by a gate, so you will need\n"
+						"                        to find the key in the dungeon to be able to enter the final room.\n\n"
+						"                        If there a monster in a room, you will not be able to pass\n"
+						"                        until the monster has been defeated, although you can retreat\n"
+						"                        from the way you came if needed\n";
 				}
 				else if (userInput == "exit")
 				{
